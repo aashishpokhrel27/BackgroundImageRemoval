@@ -102,4 +102,4 @@ The work here laid the foundation for my current research on Vision-Language Mod
 
 **Aashish Pokhrel**  
 MS Computer Science · University of Wyoming (GPA: 4.0) · Graduating May 2027  
-[LinkedIn](https://linkedin.com/in/aashishpokhrel) · [Portfolio](https://aashishpokhrel.com) · [GitHub](https://github.com/aashishpokhrel27)
+[LinkedIn](https://linkedin.com/in/aashishpokhrel) · [Portfolio](https://aashishpokhrel27.github.io/) · [GitHub](https://github.com/aashishpokhrel27)
