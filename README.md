@@ -1,89 +1,53 @@
 # Background Image Removal
 
-**Undergraduate Thesis Project · Tribhuvan University · Bachelor of Engineering in Computer Engineering**
+**Undergraduate Thesis Project · Tribhuvan University · Bachelor of Engineering in Computer Engineering · 2021**
 
-A deep learning pipeline for automatic background segmentation and removal from images, trained and evaluated on standard benchmarks. This project was completed as my final year thesis (GPA: 3.7) and represents my first end-to-end implementation of a computer vision system.
+A full-stack web application for automatic background removal from images using deep learning. Users upload an image through a browser interface; the backend runs a segmentation model and returns the image with the background removed.
 
 ---
 
 ## Overview
 
-Background removal is a foundational computer vision task with applications in e-commerce, portrait photography, video conferencing, and content creation. This project implements a semantic segmentation approach to separate foreground subjects from background with pixel-level precision.
+Background removal is a foundational computer vision task with applications in e-commerce, portrait photography, video conferencing, and document processing. This project delivers an end-to-end solution — from deep learning inference to a usable web interface — built as my final year undergraduate thesis.
 
-**Key contributions:**
-- End-to-end training pipeline from data preprocessing through inference
-- Evaluation on standard segmentation benchmarks
-- Clean inference interface for single-image and batch processing
+**What it does:**
+- Accepts an image upload via a browser-based frontend
+- Sends the image to a Python backend running a deep learning segmentation model
+- Returns the foreground-extracted image with background removed
+- Displays the result instantly in the browser
 
 ---
 
 ## Architecture
 
-The system uses an encoder-decoder architecture for semantic segmentation:
+```
+┌─────────────────────────────────────┐
+│           Frontend                  │
+│   HTML + CSS + JavaScript           │
+│   Image upload UI + result display  │
+└────────────────┬────────────────────┘
+                 │  HTTP (image upload / response)
+                 ▼
+┌─────────────────────────────────────┐
+│            Backend                  │
+│   Python (Flask / FastAPI)          │
+│   Deep learning segmentation model  │
+│   Background removal inference      │
+└─────────────────────────────────────┘
+```
 
-```
-Input Image
-     │
-     ▼
-┌─────────────┐
-│   Encoder   │  ← Pretrained CNN backbone (feature extraction)
-│  (Backbone) │
-└─────────────┘
-     │
-     ▼
-┌─────────────┐
-│   Decoder   │  ← Upsampling + skip connections
-│  (U-Net)    │
-└─────────────┘
-     │
-     ▼
-Binary Segmentation Mask → Masked Output Image
-```
+The backend loads a pretrained segmentation model, processes the uploaded image, generates a binary foreground mask, and applies it to return a clean PNG with transparent background.
 
 ---
 
-## Setup
+## Tech Stack
 
-**Requirements**
-```
-Python 3.8+
-PyTorch >= 1.9
-torchvision
-Pillow
-numpy
-matplotlib
-```
-
-**Install dependencies**
-```bash
-git clone https://github.com/aashishpokhrel27/BackgroundImageRemoval.git
-cd BackgroundImageRemoval
-pip install -r requirements.txt
-```
-
----
-
-## Usage
-
-**Single image inference**
-```python
-from model import BackgroundRemover
-
-remover = BackgroundRemover(weights='checkpoints/model.pth')
-output = remover.remove_background('input.jpg')
-output.save('output.png')
-```
-
-**Batch processing**
-```bash
-python inference.py --input_dir ./images --output_dir ./results
-```
-
----
-
-## Results
-
-Sample outputs are available in the `/results` directory.
+| Layer | Technology |
+|---|---|
+| Frontend | HTML, CSS, JavaScript |
+| Backend | Python |
+| ML/CV | Deep learning segmentation model |
+| Interface | REST API (image upload → masked output) |
 
 ---
 
@@ -91,25 +55,51 @@ Sample outputs are available in the `/results` directory.
 
 ```
 BackgroundImageRemoval/
-├── model/              # Model architecture definitions
-├── data/               # Dataset loading and preprocessing
-├── train.py            # Training script
-├── inference.py        # Inference pipeline
-├── evaluate.py         # Evaluation metrics
-├── checkpoints/        # Saved model weights
-├── results/            # Sample outputs
-└── requirements.txt
+├── backend/        # Python backend — ML inference + API server
+├── frontend/       # HTML/CSS/JS — upload UI and result display
+├── .gitignore
+└── README.md
+```
+
+---
+
+## Setup & Usage
+
+**Prerequisites**
+```
+Python 3.8+
+Node.js (optional, for frontend dev server)
+```
+
+**Backend**
+```bash
+git clone https://github.com/aashishpokhrel27/BackgroundImageRemoval.git
+cd BackgroundImageRemoval/backend
+pip install -r requirements.txt
+python app.py
+```
+
+**Frontend**
+
+Open `frontend/index.html` in your browser, or serve it locally:
+```bash
+cd frontend
+python -m http.server 3000
+# Visit http://localhost:3000
 ```
 
 ---
 
 ## Context
 
-This project was completed in 2021 as my undergraduate thesis at Tribhuvan University. It marked the beginning of my journey into computer vision — a path that has since led to research on Vision-Language Models, two publications at CVPR 2026 and ICPR 2026, and ongoing work on negation understanding in multimodal systems.
+This project was completed in 2021 as my undergraduate thesis at Tribhuvan University, where I graduated with a 3.7 GPA in Computer Engineering. It was my first end-to-end computer vision system — combining deep learning inference with a deployable web interface.
+
+The work here laid the foundation for my current research on Vision-Language Models at the University of Wyoming, where I have since published at CVPR 2026 (GRAIL-V Workshop) and ICPR 2026 on negation understanding in multimodal retrieval systems.
 
 ---
 
 ## Author
 
 **Aashish Pokhrel**  
-[LinkedIn](https://linkedin.com/in/aashishpokhrel) · [Portfolio](https://aashishpokhrel.com) · [Google Scholar](https://scholar.google.com/citations?user=YOUR_ID)
+MS Computer Science · University of Wyoming (GPA: 4.0) · Graduating May 2027  
+[LinkedIn](https://linkedin.com/in/aashishpokhrel) · [Portfolio](https://aashishpokhrel.com) · [GitHub](https://github.com/aashishpokhrel27)
