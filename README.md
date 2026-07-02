@@ -83,11 +83,6 @@ python inference.py --input_dir ./images --output_dir ./results
 
 ## Results
 
-| Metric | Score |
-|---|---|
-| Mean IoU | *reported in thesis* |
-| Pixel Accuracy | *reported in thesis* |
-
 Sample outputs are available in the `/results` directory.
 
 ---
